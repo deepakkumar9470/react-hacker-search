@@ -3,8 +3,7 @@ import Loading from "./Loading";
 import NewsCard from "./NewsCard";
 import Search from "./Search";
 import axios from "axios";
-import ReactPaginate from "react-paginate";
-import { ChevronRight, ChevronLeft } from "lucide-react";
+import Pagination from "./Pagination";
 
 const Home = () => {
   const [query, setQuery] = useState("");
@@ -45,7 +44,7 @@ const Home = () => {
 
   return (
     <div className="pt-10">
-      <h1 className="text-5xl leading-3 text-txtColor text-center font-pattaya tracking-wide font-extraboldmt-4 mb-6">
+      <h1 className="text-5xl md:leading-3 text-txtColor text-center font-pattaya tracking-wide font-extraboldmt-4 mb-6">
         React Hacker Search App
       </h1>
       <Search
@@ -79,29 +78,10 @@ const Home = () => {
         </p>
       ) : null}
 
-      <ReactPaginate
-        className="w-[1000px] flex items-center justify-center fixed py-4 px-3 list-none bg-bgLight rounded-md mx-auto left-[20%] bottom-0 z-20"
-        breakLabel={<span className="mx-4">...</span>}
-        nextLabel={
-          <span className="w-10 h-10 flex items-center justify-center bg-purple text-txtColor rounded-md">
-            <ChevronRight />
-          </span>
-        }
-        onPageChange={handleClick}
-        marginPagesDisplayed={4}
-        pageRangeDisplayed={5}
+      <Pagination
+        currPage={currPage}
         pageCount={pageCount}
-        forcePage={currPage}
-        previousLabel={
-          <span className="w-10 h-10 flex items-center justify-center bg-purple text-txtColor rounded-md mr-4">
-            <ChevronLeft />
-          </span>
-        }
-        renderOnZeroPageCount={null}
-        activeClassName="bg-[#A555EC] text-txtColor"
-        previousClassName="previous-page"
-        nextClassName="next"
-        pageClassName="w-10 h-10  text-txtColor block border flex items-center cursor-pointer justify-center rounded-md mr-4 border-solid border-txtColor hover:border-softTxt"
+        handleClick={handleClick}
       />
     </div>
   );
